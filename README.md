@@ -1,5 +1,6 @@
 # Frappe/ERPNext Version-15 in Ubuntu 22.04 LTS Installation Guide
 A complete Guide to Install Frappe/ERPNext version 15  in Ubuntu 22.04 LTS
+      Ubuntu is available in Microsoft Store
 
 #### Refer this for default python 3.11 setup
 
@@ -208,6 +209,40 @@ Open url http://frappe.site.local:8000 to login
     bench --site frappe.site.local install-app erpnext
     
     bench start
+
+
+
+### Errors
+       "Access denied for user 'root'@'localhost'")
+
+              sudo mysql -u root - // enter MariaDB monitor
+                     GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION; 
+                     PRIVILEGES;
+                     FLUSH PRIVILEGES;
+                     EXIT;
+                     
+      Continue to STEP 14
+
+### To delete your current Frappe/ERPNext setup and reinstall 
+      # Remove Frappe Bench
+      sudo rm -rf ~/frappe-bench
+      
+      # Remove MariaDB
+      sudo apt-get remove --purge mariadb-server mariadb-client
+      sudo apt-get autoremove
+      sudo apt-get autoclean
+      
+      # Remove Node.js and Yarn
+      sudo apt-get remove --purge nodejs npm
+      sudo apt-get autoremove
+      sudo apt-get autoclean
+      
+      # Clean up remaining files
+      sudo rm -rf /usr/local/bin/bench
+      sudo rm -rf /usr/local/bin/frappe
+      sudo rm -rf /usr/local/bin/erpnext
+      sudo rm -rf /usr/lib/node_modules
+              
     
     
 
